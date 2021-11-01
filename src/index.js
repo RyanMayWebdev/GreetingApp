@@ -22,7 +22,7 @@ app.geoSuccess = (pos) => {
     let coords = pos.coords;
     app.latitude = coords.latitude;
     app.longitude = coords.longitude;
-    weatherApp.getWeather(app.latitude, app.longitude);
+    app.weatherChange();
     weatherApp.getCity(app.latitude, app.longitude)
         .then(cityData => {
             app.locationEl.innerText = `${cityData[0].name}, ${cityData[0].country}`;
@@ -60,6 +60,16 @@ app.getTime = () => {
     };
     app.intervalID = setInterval(() => app.getTime(), 60000);
 };
+
+app.weatherChange = () => {
+    weatherApp.getWeather(app.latitude, app.longitude)
+    .then(weatherData => {
+        const {icon, description} = weatherData.current.weather[0];
+        const temp = Math.round(weatherData.current.temp);
+        const feelsLike = Math.round(weatherData.current.feels_like);
+        app.weatherEl.innerHTML = `<img src='https://openweathermap.org/img/wn/${icon}@2x.png' alt='${description}'>${temp}C <span>Feels like: ${feelsLike}C</span>`
+    })
+}
 
 app.init = () => {
     app.getTime();
