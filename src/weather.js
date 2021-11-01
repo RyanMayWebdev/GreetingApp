@@ -1,0 +1,1 @@
+// Create openWeather api call function, returns object with current weather, icons, weekly forecast. Takes in location params
