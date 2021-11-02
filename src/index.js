@@ -2,6 +2,7 @@ import weatherApp from "./weather.js";
 import photoApp from "./image.js";
 import quoteApp from "./quotes.js";
 
+
 const app = {};
 app.bodyEl = document.querySelector('body');
 app.timeEl = document.querySelector('#time');
@@ -79,12 +80,9 @@ app.weatherChange = () => {
 };
 
 app.setBackground = () => {
-    const width = screen.width;
-    const height = screen.height;
     photoApp.getPhoto(app.timeOfDay)
     .then(imageData => {
         const url = `${imageData.urls.raw}`
-        console.log('running image request')
         app.bodyEl.style = `background: url(${url}})`;
     });
 };
@@ -92,7 +90,6 @@ app.setBackground = () => {
 app.displayQuote = () => {
     quoteApp.getQuote()
     .then(quote => {
-        console.log(quote )
         app.quoteEl.querySelector('blockQuote').innerText = quote.data[0].quoteText;
         app.quoteEl.querySelector('figcaption').innerText = `- ${quote.data[0].quoteAuthor}`;
     })
