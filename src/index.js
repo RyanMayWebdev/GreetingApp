@@ -1,4 +1,5 @@
 import weatherApp from "./weather.js";
+import photoApp from "./image.js";
 
 const app = {};
 app.bodyEl = document.querySelector('body');
@@ -11,6 +12,7 @@ app.intervalID = '';
 app.timeToWait = 60000;
 app.longitude = 43.65;
 app.latitude = -79.38;
+app.timeOfDay = 'morning';
 
 // Import modules for weather and quote
 // Get users location
@@ -51,11 +53,14 @@ app.getTime = () => {
     const time = date.toLocaleTimeString('en-us', options)
 
     app.timeEl.innerText = time;
-    if (time.includes('PM') && parseInt(time) < 6) {
+    if (time.includes('PM') && parseInt(time) < 6 || parseInt(time) === 12) {
+        app.timeOfDay = 'Afternoon';
         app.greetingEl.innerText = "Good Afternoon"
     } else if (time.includes('PM')) {
+        app.timeOfDay = 'Evening';
         app.greetingEl.innerText = 'Good Evening';
     } else {
+        app.timeOfDay = 'Morning';
         app.greetingEl.innerText = 'Good morning';
     };
     app.intervalID = setInterval(() => app.getTime(), 60000);
@@ -69,10 +74,22 @@ app.weatherChange = () => {
         const feelsLike = Math.round(weatherData.current.feels_like);
         app.weatherEl.innerHTML = `<img src='https://openweathermap.org/img/wn/${icon}@2x.png' alt='${description}'>${temp}C <span>Feels like: ${feelsLike}C</span>`
     })
-}
+};
+
+app.setBackground = () => {
+    const width = screen.width;
+    const height = screen.height;
+    photoApp.getPhoto(app.timeOfDay)
+    .then(imageData => {
+        const url = `${imageData.urls.raw}`
+        console.log('running image request')
+        app.bodyEl.style = `background: url(${url}})`;
+    });
+};
 
 app.init = () => {
     app.getTime();
+    app.setBackground();
     navigator.geolocation.getCurrentPosition(app.geoSuccess, app.failure);
     const seconds = app.date.getSeconds();
     app.timeToWait = (60 - parseInt(seconds)) * 1000;

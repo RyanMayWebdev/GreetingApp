@@ -1,7 +1,8 @@
 // Create openWeather api call function, returns object with current weather, icons, weekly forecast. Takes in location params
 
 const weatherApp = {};
-weatherApp.apiKey = '127a987ea62107eb4435622c8dcf03fe';
+weatherApp.apiKey = process.env.weatherApiKey;
+
 
 weatherApp.getWeather = (lat,long)  => {
     const part = ['minutely','hourly'];
