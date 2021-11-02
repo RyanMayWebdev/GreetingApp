@@ -1,5 +1,6 @@
 import weatherApp from "./weather.js";
 import photoApp from "./image.js";
+import quoteApp from "./quotes.js";
 
 const app = {};
 app.bodyEl = document.querySelector('body');
@@ -7,6 +8,7 @@ app.timeEl = document.querySelector('#time');
 app.locationEl = document.querySelector('#location');
 app.weatherEl = document.querySelector('#weather');
 app.greetingEl = document.querySelector('#greeting');
+app.quoteEl = document.querySelector('#quote');
 app.date = new Date();
 app.intervalID = '';
 app.timeToWait = 60000;
@@ -87,7 +89,17 @@ app.setBackground = () => {
     });
 };
 
+app.displayQuote = () => {
+    quoteApp.getQuote()
+    .then(quote => {
+        console.log(quote )
+        app.quoteEl.querySelector('blockQuote').innerText = quote.data[0].quoteText;
+        app.quoteEl.querySelector('figcaption').innerText = `- ${quote.data[0].quoteAuthor}`;
+    })
+}
+
 app.init = () => {
+    app.displayQuote();
     app.getTime();
     app.setBackground();
     navigator.geolocation.getCurrentPosition(app.geoSuccess, app.failure);
