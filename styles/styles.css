@@ -155,3 +155,44 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 html {
   font-size: 125%;
 }
+
+body {
+  background-position: center;
+  background-size: cover;
+}
+
+blockquote {
+  font-size: 1.25rem;
+  margin: 0;
+  padding: 1rem 0;
+}
+
+figcaption {
+  font-size: 1.15rem;
+}
+
+.overlay {
+  color: #fff;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 80%;
+  max-width: 1440px;
+  margin: auto;
+}
+
+.time {
+  display: block;
+  font-size: 8rem;
+}

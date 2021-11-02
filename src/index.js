@@ -83,7 +83,7 @@ app.setBackground = () => {
     photoApp.getPhoto(app.timeOfDay)
     .then(imageData => {
         const url = `${imageData.urls.raw}`
-        app.bodyEl.style = `background: url(${url}})`;
+        app.bodyEl.style = `background-image: url(${url}})`;
     });
 };
 
@@ -91,7 +91,7 @@ app.displayQuote = () => {
     quoteApp.getQuote()
     .then(quote => {
         app.quoteEl.querySelector('blockQuote').innerText = quote.data[0].quoteText;
-        app.quoteEl.querySelector('figcaption').innerText = `- ${quote.data[0].quoteAuthor}`;
+        app.quoteEl.querySelector('figcaption').innerHTML = `<em>- ${quote.data[0].quoteAuthor}</em>`;
     })
 }
 

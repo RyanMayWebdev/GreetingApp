@@ -2,7 +2,7 @@
 
 const photoApp = {};
 
-photoApp.apiKey = process.env.unsplashApiKey
+photoApp.apiKey = 'Ohc2cXIF6UAutFjsJzYJvBMeiBfhL90g9GWj--8CokU'
 
 photoApp.getPhoto = (timeOfDay) => {
     return fetch(`https://api.unsplash.com/photos/random?client_id=${photoApp.apiKey}&query=${timeOfDay}&content_filter=high&topics=6sMVjTLSkeQ`)
