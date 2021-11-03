@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.port
 const calls = require(`./public/src/apiCalls.js`);
 app.use(express.static(__dirname + '/public/'));
 
@@ -35,6 +35,6 @@ app.get('/quote', (req,res) => {
     .then(results => res.send(results.data))
 });
 
-app.listen(port, () => {
+app.listen(port || 3000, () => {
     console.log(`Server running on port: ${port}`);
 });
