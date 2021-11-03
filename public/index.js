@@ -1,7 +1,3 @@
-import weatherApp from "./weather.js";
-import photoApp from "./image.js";
-import quoteApp from "./quotes.js";
-
 
 const app = {};
 app.bodyEl = document.querySelector('body');
@@ -13,8 +9,8 @@ app.quoteEl = document.querySelector('#quote');
 app.date = new Date();
 app.intervalID = '';
 app.timeToWait = 60000;
-app.longitude = 43.65;
-app.latitude = -79.38;
+app.longitude = -79.7287593;
+app.latitude = 43.4718004;
 app.timeOfDay = 'morning';
 
 // Import modules for weather and quote
@@ -28,10 +24,7 @@ app.geoSuccess = (pos) => {
     app.latitude = coords.latitude;
     app.longitude = coords.longitude;
     app.weatherChange();
-    weatherApp.getCity(app.latitude, app.longitude)
-        .then(cityData => {
-            app.locationEl.innerText = `${cityData[0].name}, ${cityData[0].country}`;
-        });
+    app.getCity();
 
 };
 
@@ -44,6 +37,13 @@ app.failure = (err) => {
 
 };
 
+app.getCity = () => {
+    fetch(`/city?lat=${app.latitude}&long=${app.longitude}`)
+    .then(res => res.json())
+    .then(cityData => {
+        app.locationEl.innerText = `${cityData[0].name}, ${cityData[0].country}`;
+    })
+}
 
 
 app.getTime = () => {
@@ -70,17 +70,19 @@ app.getTime = () => {
 };
 
 app.weatherChange = () => {
-    weatherApp.getWeather(app.latitude, app.longitude)
-    .then(weatherData => {
-        const {icon, description} = weatherData.current.weather[0];
-        const temp = Math.round(weatherData.current.temp);
-        const feelsLike = Math.round(weatherData.current.feels_like);
+    fetch(`/weather?lat=${app.latitude}&long=${app.longitude}`)
+    .then(res => res.json())
+    .then(data => {
+        const {icon, description} = data.current.weather[0];
+        const temp = Math.round(data.current.temp);
+        const feelsLike = Math.round(data.current.feels_like);
         app.weatherEl.innerHTML = `<img src='https://openweathermap.org/img/wn/${icon}@2x.png' alt='${description}'>${temp}C <span>Feels like: ${feelsLike}C</span>`
     })
 };
 
 app.setBackground = () => {
-    photoApp.getPhoto(app.timeOfDay)
+    fetch(`/photo?timeOfDay=${app.timeOfDay}`)
+    .then(res => res.json())
     .then(imageData => {
         const url = `${imageData.urls.raw}`
         app.bodyEl.style = `background-image: url(${url}})`;
@@ -88,7 +90,8 @@ app.setBackground = () => {
 };
 
 app.displayQuote = () => {
-    quoteApp.getQuote()
+    fetch(`/quote`)
+    .then(res => res.json())
     .then(quote => {
         app.quoteEl.querySelector('blockQuote').innerText = quote.data[0].quoteText;
         app.quoteEl.querySelector('figcaption').innerHTML = `<em>- ${quote.data[0].quoteAuthor}</em>`;
