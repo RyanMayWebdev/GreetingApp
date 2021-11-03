@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const calls = require(`./src/apiCalls.js`);
-app.use(express.static(__dirname));
+const calls = require(`./public/src/apiCalls.js`);
+app.use(express.static(__dirname + '/public/'));
 
 
 app.get('/',(req,res) => {
-    res.sendFile('index.html',{root:__dirname}, (err)=> {
+    res.sendFile('index.html',{root:__dirname + '/public/'}, (err)=> {
         if (err) {
             console.log(err);
         }else {
