@@ -1,0 +1,23 @@
+{
+  "name": "greetingapp",
+  "version": "1.0.0",
+  "description": "A greeting app, gives weather, time and inspirational quotes",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RyanMayWebdev/GreetingApp.git"
+  },
+  "author": "Ryan May",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RyanMayWebdev/GreetingApp/issues"
+  },
+  "homepage": "https://github.com/RyanMayWebdev/GreetingApp#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "express": "^4.17.1"
+  }
+}
