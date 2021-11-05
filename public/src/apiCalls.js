@@ -28,9 +28,10 @@ module.exports = {
                 .then(res => {
                     if (res.status !== 200) {
                         throw new Error(res.status);
-                    } else {
+                    }else {
                         return res
-                    };
+                    }
+
                 })
                 .catch(err => {
                     console.log(err.message);
