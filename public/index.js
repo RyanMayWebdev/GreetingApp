@@ -137,7 +137,6 @@ app.setBackground = () => {
     fetch(`/photo?timeOfDay=${app.timeOfDay}`)
         .then(res => res.json())
         .then(imageData => {
-            console.log(imageData)
             const url = `${imageData.urls.raw}`
             app.bodyEl.style = `background-image: url(${url}})`;
 
@@ -151,7 +150,6 @@ app.setBackground = () => {
 
 // Get a quote from the server and display it on the app
 app.displayQuote = () => {
-    console.log('getting quote')
     fetch(`/quote`)
         .then(res => res.json())
         .then(quote => {
