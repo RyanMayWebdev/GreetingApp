@@ -1,37 +1,161 @@
 @import "_setup";
 
+// =====================
+// GENERAL STYLING
+// =====================
 html {
-    font-size: 125%; 
+    font-size: 125%;
 }
 
 body {
     background-position: center;
     background-size: cover;
-} 
+}
 
 blockquote {
     font-size: 1.25rem;
     margin: 0;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
 }
 
 figcaption {
     font-size: 1.15rem;
 }
 
+img {
+    width: 3.5rem;
+}
+
+h1 {
+    padding: 0 2rem;
+}
+
+footer {
+    color: #b3b3b3;
+    position: absolute;
+    bottom: 0;
+    left: 0.5rem;
+
+    a {
+        color:#b3b3b3;
+        text-decoration: none;
+    }
+
+    p{
+        margin: 0;
+    }
+}
+// =====================
+// WEATHER
+// =====================
+.currentForecast {
+
+    img {
+        padding-left: 1.5rem
+    }
+
+    h3 {
+        display: inline-block;
+        margin: 0;
+    }
+
+    h3:last-of-type {
+        display: block;
+        margin-left: 5.25rem;
+    }
+}
+
+.weather {
+    align-items: center;
+    display: flex;
+    position: absolute;
+    right: 2rem;
+    top: 0;
+
+    button {
+        background-color: #0000;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        margin: 0 0.25rem;
+    }
+
+    h2 {
+        font-weight: 400;
+        margin: 0;
+    }
+}
+
+.weatherModal {
+    background-color: #000000d9;
+    border-radius: 1rem 0 0 1rem;
+    max-height: 90vh;
+    height: 25rem;
+    position: absolute;
+    right: 0rem;
+    overflow-y: auto;
+    top: 3rem;
+    transition: all 1s;
+    visibility: visible;
+
+    h2 {
+        margin: 0;
+        padding: 1rem;
+    }
+}
+
+.weatherList {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    margin: 0;
+    padding: 0 2rem 1rem;
+}
+
+// =====================
+// MAIN OVERLAY
+// =====================
 .overlay {
+    align-items: center;
+    background-color: #0000005c;
     color: #fff;
-    height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    height: 100vh;
     justify-content: center;
-    width: 80%;
-    max-width: 1440px;
     margin: auto;
-}  
+}
+
+.information {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+}
 
 .time {
     display: block;
     font-size: 8rem;
 }
+
+.quote {
+    bottom: 4rem;
+    left: 0;
+    margin: 0 auto;
+    max-width: 1440px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    width: 80%;
+}
+
+
+.hidden {
+    height: 0rem;
+    visibility: hidden;
+}
+// =====================
+// MEDIA QUERIES
+// =====================
+@import "_mediaQueries";
