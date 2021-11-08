@@ -3,7 +3,7 @@ const axios = require('axios')
 module.exports = {
     photoApp: {
         getPhoto: (timeOfDay) => {
-            const apiKey = 'Ohc2cXIF6UAutFjsJzYJvBMeiBfhL90g9GWj--8CokU'
+            const apiKey = process.env.unsplashKey;
             return axios.get(`https://api.unsplash.com/photos/random?client_id=${apiKey}&query=${timeOfDay}&content_filter=high&topics=6sMVjTLSkeQ`)
                 .then(res => {
                     if (res.status !== 200) {
@@ -46,7 +46,7 @@ module.exports = {
     weatherApp: {
 
         getWeather: (lat, long) => {
-            const apiKey = '127a987ea62107eb4435622c8dcf03fe'
+            const apiKey = process.env.weatherApiKey;
             const part = ['minutely', 'hourly'];
             return axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=${part}&units=metric&appid=${apiKey}`)
                 .then(res => {
@@ -63,7 +63,7 @@ module.exports = {
 
 
         getCity: async (lat, long) => {
-            const apiKey = '127a987ea62107eb4435622c8dcf03fe'
+            const apiKey = process.env.weatherApiKey;
             return axios.get(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${long}&appid=${apiKey}`)
                 .then(res => {
                     if (res.status !== 200) {
