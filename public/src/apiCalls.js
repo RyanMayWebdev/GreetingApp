@@ -24,7 +24,7 @@ module.exports = {
     quoteApp: {
 
         getQuote: () => {
-            return axios.get(`https://api.quotable.io/random`)
+            return axios.get(`https://api.quotable.io/random?maxLength=125`)
                 .then(res => {
                     if (res.status !== 200) {
                         throw new Error(res.status);
