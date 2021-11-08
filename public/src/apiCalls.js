@@ -24,7 +24,7 @@ module.exports = {
     quoteApp: {
 
         getQuote: () => {
-            return axios.get(`https://quote-garden.herokuapp.com/api/v3/quotes/random?genre=inspirational`)
+            return axios.get(`https://api.quotable.io/random?maxLength=125`)
                 .then(res => {
                     if (res.status !== 200) {
                         throw new Error(res.status);

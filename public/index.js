@@ -153,15 +153,10 @@ app.displayQuote = () => {
     fetch(`/quote`)
         .then(res => res.json())
         .then(quote => {
-            if (quote.data[0].quoteText.length < 100) {
-                app.quoteEl.querySelector('blockQuote').innerText = quote.data[0].quoteText;
-                app.quoteEl.querySelector('figcaption').innerHTML = `<em>- ${quote.data[0].quoteAuthor}</em>`;
-            }else {
-                app.displayQuote();
-            };
-
-        })
-}
+                app.quoteEl.querySelector('blockQuote').innerText = quote.content;
+                app.quoteEl.querySelector('figcaption').innerHTML = `<em>- ${quote.author}</em>`;
+        });
+};
 
 app.init = () => {
     app.displayQuote();
